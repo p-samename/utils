@@ -1,18 +1,25 @@
-import { format } from "date-fns";
+import { differenceInCalendarDays, format, formatDistance } from "date-fns";
 
-interface DateUtils {
-  defaultFormatRegExp: object;
+class DateUtils {
+  defaultFormatRegExp: RegExp;
   defaultFormat: string;
-  today(): string;
+
+  constructor() {
+    this.defaultFormatRegExp = /^\d{4}-\d{2}-\d{2}$/;
+    this.defaultFormat = "yyyy-MM-dd";
+  }
+
+  // 오늘 날짜를 format의 형식으로 반환함
+  today(_format: string = this.defaultFormat): string {
+    return format(new Date(), _format);
+  }
+
+  // startDate 와 endDate의 날짜의 차이를 일수로 반환
+  distanceDate(startDate: Date | string, endDate: Date | string): number {
+    return Math.abs(differenceInCalendarDays(startDate, endDate));
+  }
 }
 
-const dateUtils: DateUtils = {
-  defaultFormatRegExp: /^\d{4}-\d{2}-\d{2}$/,
-  defaultFormat: "yyyy-MM-dd",
+const dateUtils = new DateUtils();
 
-  today(): string {
-    return format(new Date(), this.defaultFormat);
-  },
-};
-
-console.log(dateUtils.defaultFormatRegExp);
+export default dateUtils;
