@@ -84,13 +84,4 @@ describe("dateUtils", () => {
       convertRemainTime
     );
   });
-
-  // remainDays
-  test("remainDays - baseDate부터 targetDate까지 일 수를 반환 : number", () => {
-    const baseDate = new Date(2024, 0, 1);
-    const targetDate = new Date(2025, 4, 23);
-    expect(dateUtils.remainDays(baseDate, targetDate)).toBe(
-      differenceInDays(targetDate, baseDate)
-    );
-  });
 });

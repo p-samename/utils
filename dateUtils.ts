@@ -77,14 +77,6 @@ class DateUtils {
     });
     return convertRemainTime;
   }
-
-  // baseDate부터 targetDate까지의 남은 일 수 반환
-  remainDays(
-    baseDate: Date | string,
-    targetDate: Date | string = this.today()
-  ) {
-    return Math.abs(differenceInDays(baseDate, targetDate));
-  }
 }
 
 const dateUtils: DateUtils = new DateUtils();
