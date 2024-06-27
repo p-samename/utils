@@ -87,6 +87,4 @@ class DateUtils {
 
 const dateUtils: DateUtils = new DateUtils();
 
-console.log(dateUtils.endDateOfMonth(new Date()));
-
 export default dateUtils;
