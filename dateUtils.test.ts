@@ -2,7 +2,7 @@ import dateUtils from "./dateUtils"; // ES 모듈 가져오기
 import {
   addDays,
   differenceInCalendarDays,
-  differenceInDays,
+  endOfMonth,
   format,
   formatDuration,
   intervalToDuration,
@@ -56,6 +56,13 @@ describe("dateUtils", () => {
     const targetDate = new Date(24, 0, 2);
     const expectedDate = isBefore(baseDate, targetDate);
     expect(dateUtils.isBeforeDate(baseDate, targetDate)).toBe(expectedDate);
+  });
+
+  // endDateOfMonth
+  test("endDateOfMonth -baseDate의 해당 달의 마지막 일자를 구함 : Date", () => {
+    const baseDate = new Date();
+    const expectedDate = endOfMonth(baseDate);
+    expect(dateUtils.endDateOfMonth(baseDate)).toEqual(expectedDate);
   });
 
   // remainFullTime
