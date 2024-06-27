@@ -3,6 +3,7 @@
 서비스에서 자주 사용하는 날짜관련 함수들 정리 및 각 상황 함수에 따른 테스트 코드 작성
 
 <ul>
+    <li>isDateFormat - baseDate의 형식이 defaultFormat과 일치하는지 체크</li>
     <li>dateForm - Date 형식을 원하는 format 으로 변환</li>
     <li>today - 오늘 날짜 반환</li>
     <li>distanceDate - 두 날짜의 차이를 일 수로 반환</li>
