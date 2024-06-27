@@ -92,7 +92,7 @@ class DateUtils {
     return convertRemainTime;
   }
 
-  // baseDate의 해당 달의 마지막 일자를 구함
+  // baseDate가 해당하는 달의 마지막 일자를 구함
   endDateOfMonth(baseDate: Date | string) {
     return endOfMonth(baseDate);
   }
