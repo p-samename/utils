@@ -8,6 +8,7 @@ import {
   intervalToDuration,
   isAfter,
   isBefore,
+  isMatch,
   setDefaultOptions,
 } from "date-fns";
 import { ko } from "date-fns/locale";
@@ -24,8 +25,21 @@ class DateUtils {
     this.defaultFormat = "yyyy-MM-dd";
   }
 
+  // baseDate의 형식이 defaultFormat과 일치하는지 체크
+  isDateFormat(baseDate: string): boolean {
+    if (
+      this.defaultFormatRegExp.test(baseDate) &&
+      isMatch(baseDate, this.defaultFormat)
+    ) {
+      return true;
+    }
+
+    console.error(`${baseDate}는 날짜형식이 아닙니다.`);
+    return false;
+  }
+
   // 날짜를 format 형식으로 반환
-  dateForm(date: Date | string, formatType = this.defaultFormat) {
+  dateForm(date: Date | string, formatType = this.defaultFormat): string {
     return format(date, formatType);
   }
 
@@ -49,17 +63,17 @@ class DateUtils {
   }
 
   // baseDate가 targetDate의 이후인지 판별
-  isAfterDate(baseDate: Date | string, targetDate: Date | string) {
+  isAfterDate(baseDate: Date | string, targetDate: Date | string): boolean {
     return isAfter(baseDate, targetDate);
   }
 
   // baseDate가 targetDate의 이전인지 판별
-  isBeforeDate(baseDate: Date | string, targetDate: Date | string) {
+  isBeforeDate(baseDate: Date | string, targetDate: Date | string): boolean {
     return isBefore(baseDate, targetDate);
   }
 
   // baseDate부터 targetDate까지 남은 시간(?년 ?일 ?시 ?분 ?초)을 반환
-  remainFullTime(baseDate: Date | string, targetDate: Date | string) {
+  remainFullTime(baseDate: Date | string, targetDate: Date | string): string {
     // start 부터 end 까지의 남은 시간을 반환 0인 값은 반환하지않음 - 초 까지 반환
     const { years, months, days, hours, minutes, seconds } = intervalToDuration(
       {

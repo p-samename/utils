@@ -8,9 +8,18 @@ import {
   intervalToDuration,
   isAfter,
   isBefore,
+  isMatch,
 } from "date-fns";
 
 describe("dateUtils", () => {
+  // isDateFormat
+  test("isDateFormat - baseDate의 형식이 defaultFormat과 일치하는지 체크", () => {
+    const expectedDate = isMatch(dateUtils.dateForm(new Date()), "yyyy-MM-dd");
+    expect(dateUtils.isDateFormat(dateUtils.dateForm(new Date()))).toEqual(
+      expectedDate
+    );
+  });
+
   // dateForm
   test("dateForm - Date 형식을 원하는 format 으로 변환", () => {
     const expectedDate = format(new Date(), "yyyy-MM-dd");
